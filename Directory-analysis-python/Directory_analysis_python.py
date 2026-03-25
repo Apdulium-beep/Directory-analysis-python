@@ -4,7 +4,7 @@ from tkinter import ttk, filedialog, messagebox
 from pathlib import Path
 from collections import defaultdict
 
-#Расширенная карта типов файлов
+#Карта типов файлов
 FILE_TYPES = {
     '.doc': 'Word 97-2003', '.docx': 'Word Document', 
     '.xls': 'Excel 97-2003', '.xlsx': 'Excel Spreadsheet',
@@ -82,7 +82,7 @@ def sort_column(column, reverse=False):
     
     tree.heading(column, command=lambda: sort_column(column, not reverse))
 
-#ИНТЕРФЕЙС
+#Интерфейс
 root = tk.Tk()
 root.title("Анализатор файлов Pro")
 root.geometry("1100x650")
@@ -104,7 +104,7 @@ tree.column("Тип", width=300)
 tree.column("Группа", width=150)
 tree.pack(pady=10, padx=15, fill="both", expand=True)
 
-#КНОПКИ 
+#Кнопки
 button_frame = tk.Frame(root)
 button_frame.pack(pady=15)
 
