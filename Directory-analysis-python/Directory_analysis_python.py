@@ -1,3 +1,4 @@
+#Библиотеки
 import os
 import csv
 from pathlib import Path
@@ -6,14 +7,16 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 import threading
 from collections import defaultdict
+##################################################################################
 
+#Функции
 def get_size_string(size_bytes):
     for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
         if size_bytes < 1024.0:
             return f"{size_bytes:.1f} {unit}"
         size_bytes /= 1024.0
     return f"{size_bytes:.1f} PB"
-
+##################################################################################
 def get_file_extension(file_path):
     """Возвращает расширение файла (.txt, .apk, .py и т.д.)."""
     if file_path.is_dir():
@@ -24,14 +27,21 @@ def get_file_extension(file_path):
         return "❓ без расширения"
     
     return ext.upper()  # .txt → .TXT
-
+##################################################################################
 def get_hierarchy_symbol(level):
     """Генерирует символы иерархии для отображения вложенности"""
     if level == 0:
         return ""
     symbols = ["│   "] * (level - 1) + ["├── "]
     return "".join(symbols)
+##################################################################################
+def main():
+    root = tk.Tk()
+    app = DirectoryAnalyzer(root)
+    root.mainloop()
+##################################################################################
 
+#Классы
 class DuplicatesWindow:
     def __init__(self, parent, duplicates_data):
         self.window = tk.Toplevel(parent)
@@ -215,6 +225,7 @@ class DuplicatesWindow:
                 messagebox.showinfo("Успех", f"Экспортировано в:\n{filename}")
             except Exception as e:
                 messagebox.showerror("Ошибка", f"Не удалось сохранить:\n{str(e)}")
+####################################################################################################################################################################
 
 class DirectoryAnalyzer:
     def __init__(self, root):
@@ -496,10 +507,7 @@ class DirectoryAnalyzer:
                            "• ❓ без расширения\n\n"
                            "Python 3.6+")
 
-def main():
-    root = tk.Tk()
-    app = DirectoryAnalyzer(root)
-    root.mainloop()
 
+#Код)
 if __name__ == "__main__":
     main()
